@@ -31,6 +31,7 @@ export class FileImportsComponent implements OnInit {
   public groupBy: string;
   public orderName: string;
   public nameSuffixes: Array<any> = [];
+  public mappingWindow = false;
 
   constructor(private orgModelApi: OrgModelApi,
               private _route: ActivatedRoute,
@@ -80,6 +81,7 @@ export class FileImportsComponent implements OnInit {
       });
     };
     fileReader.readAsArrayBuffer($event.target.files[0]);
+    this.mappingWindow = true;
   }
 
   assignMapping(fileHeader, stockupHeader, stockupSubHeader) {

@@ -68,6 +68,17 @@ services:
     depends_on:
       - memcache
 
+  monitoring:
+    image: shoppinpal/node:6.10
+    working_dir: /apps/workers
+    command: node syncMonitoringWorker.js
+    volumes:
+      - type: bind
+        source: ./workers
+        target: /apps/workers
+    restart: always
+    env_file: monitoring-worker.env
+
   sync-engine:
     image: shoppinpal/node:6.10
     working_dir: /apps/workers
